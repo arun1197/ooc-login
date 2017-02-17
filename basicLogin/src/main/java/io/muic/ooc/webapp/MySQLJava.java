@@ -35,7 +35,7 @@ public class MySQLJava {
             String pass = hashSalt.hashPassword(resultSet2.getString("password"));
             while(resultSet2.next()){
                 if(StringUtils.equals(resultSet2.getString("username"),username) &&
-                        StringUtils.equals(resultSet2.getString("password"),password) && hashSalt.checkPassword(password,pass)) {
+                        StringUtils.equals(resultSet2.getString("password"),password)) {
                         not_pass = true;
                 }
         }
