@@ -5,6 +5,15 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>io.muic.ooc.webapp.servlet.LoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
 
   <error-page>
     <error-code>404</error-code>
