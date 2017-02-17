@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @WebServlet(
@@ -36,6 +37,7 @@ public class LoginServlet extends HttpServlet {
         // extract username and password from request
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        PrintWriter out = response.getWriter();
         if (!StringUtils.isBlank(username) && !StringUtils.isBlank(password)) {
             try {
                 if (Main.mySQLJava.checkLogin(username, password)) {
@@ -47,6 +49,8 @@ public class LoginServlet extends HttpServlet {
                     String up_wrong = "username or password is in wrong format.";
                     request.setAttribute("error", up_wrong);
                     response.sendRedirect("index.jsp");
+                    out.print(up_wrong);
+                    out.flush();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
