@@ -11,10 +11,7 @@ import java.io.IOException;
  * Created by Don on 2/13/2017 AD.
  */
 
-@WebServlet(
-        name = "ErrorServlet",
-        urlPatterns = {"/Error"}
-)
+@WebServlet("/Error")
 
 public class ErrorServlet extends HttpServlet {
 
