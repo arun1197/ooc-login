@@ -32,9 +32,10 @@ public class MySQLJava {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             statement = connection.createStatement();
             resultSet2 = statement.executeQuery("SELECT * FROM test.Users;");
+            String pass = hashSalt.hashPassword(resultSet2.getString("password"));
             while(resultSet2.next()){
                 if(StringUtils.equals(resultSet2.getString("username"),username) &&
-                        StringUtils.equals(resultSet2.getString("password"),password) && hashSalt.checkPassword(password,resultSet2.getString("password"))) {
+                        StringUtils.equals(resultSet2.getString("password"),password) && hashSalt.checkPassword(password,pass)) {
                         not_pass = true;
                 }
         }
