@@ -26,6 +26,7 @@ public class MySQLJava {
 
     public boolean checkLogin(String username, String password) throws Exception {
         boolean not_pass = false;
+        HashSalt hashSalt = new HashSalt();
         try {
             //Class.forName(jdbcDriverStr);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
@@ -33,7 +34,7 @@ public class MySQLJava {
             resultSet2 = statement.executeQuery("SELECT * FROM test.Users;");
             while(resultSet2.next()){
                 if(StringUtils.equals(resultSet2.getString("username"),username) &&
-                        StringUtils.equals(resultSet2.getString("password"),password)) {
+                        StringUtils.equals(resultSet2.getString("password"),password) && hashSalt.checkPassword(password,resultSet2.getString("password"))) {
                         not_pass = true;
                 }
         }
