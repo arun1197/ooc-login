@@ -37,6 +37,9 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 //        PrintWriter out = response.getWriter();
+        if(request.getSession().getAttribute("username")!=null){
+            response.sendRedirect("/users");
+        }
         if (!StringUtils.isBlank(username) && !StringUtils.isBlank(password)) {
             try {
                 if (Main.mySQLJava.checkLogin(username, password)) {
