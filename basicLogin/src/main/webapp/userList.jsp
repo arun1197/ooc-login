@@ -29,7 +29,7 @@
     <%response.setDateHeader("Expires", 0);%>
     <%response.setHeader("Pragma","no-cache");%>
     <% if(session.getAttribute("username")==null){
-        response.sendRedirect("userList.jsp");
+        response.sendRedirect("index.jsp");
     }
     %>
 <div class="col-md-12" id="content-wrapper">

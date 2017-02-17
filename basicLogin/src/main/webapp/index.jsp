@@ -18,6 +18,14 @@
 </head>
 
 <body>
+        <%response.setHeader("Cache-Control","no-cache");%>
+        <%response.setHeader("Cache-Control","no-store");%>
+        <%response.setDateHeader("Expires", 0);%>
+        <%response.setHeader("Pragma","no-cache");%>
+        <% if(session.getAttribute("username")!=null){
+            response.sendRedirect("userList.jsp");
+        }
+        %>
 <div class="container" id="container" style="display:none;">
     <section id="form">
         <div class="container">
