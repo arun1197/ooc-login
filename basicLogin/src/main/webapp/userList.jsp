@@ -10,7 +10,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SuperheroAdmin - Bootstrap Admin Template</title>
+    <title>Users List</title>
 
     <!-- bootstrap -->
     <link href="css/userList/bootstrap.css" rel="stylesheet"/>
