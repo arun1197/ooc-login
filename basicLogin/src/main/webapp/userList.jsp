@@ -32,6 +32,7 @@
         response.sendRedirect("index.jsp");
     }
     %>
+
 <div class="col-md-12" id="content-wrapper">
     <div class="row">
         <div class="col-lg-12">

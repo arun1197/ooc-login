@@ -26,6 +26,7 @@
             response.sendRedirect("userList.jsp");
         }
         %>
+
 <div class="container" id="container" style="display:none;">
     <section id="form">
         <div class="container">

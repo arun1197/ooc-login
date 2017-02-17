@@ -29,6 +29,7 @@
                 response.sendRedirect("index.jsp");
             }
             %>
+
 <div class="container" id="container" style="display:none;">
     <section id="form">
         <div class="container">
