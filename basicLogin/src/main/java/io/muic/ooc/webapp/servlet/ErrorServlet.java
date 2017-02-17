@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(
         name = "ErrorServlet",
-        urlPatterns = {"/"}
+        urlPatterns = {"/Error"}
 )
 
 public class ErrorServlet extends HttpServlet {
