@@ -11,7 +11,7 @@ import java.io.File;
 public class Main {
 
     public static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String MYSQL_URL = "jdbc:mysql://localhost/test?user=root&password=1234";
+    public static final String MYSQL_URL = "jdbc:mysql://localhost/test?user=root&password=password";
 
     public static final MySQLJava mySQLJava = new MySQLJava(MYSQL_DRIVER,MYSQL_URL);
 
@@ -19,7 +19,7 @@ public class Main {
 
         String webappDirLocation = "src/main/webapp/";
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8082);
+        tomcat.setPort(8080);
         StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
         System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
 

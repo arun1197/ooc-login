@@ -15,55 +15,12 @@ public class ReadSQL {
     private Statement statement;
     public ResultSet resultSet;
 
-    public List getUserFromTable() throws Exception{
-        List<String> content_user = new ArrayList<>();
-        try {
-            //Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM test.Users;");
-            while(resultSet.next()){
-                content_user.add(resultSet.getString("username"));
-            }
-        } finally {
-            return content_user;
-            }
-    }
-
-    public List getFnameFromTable() throws Exception{
-        List<String> content_fname = new ArrayList<>();
-        try {
-            //Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM test.Users;");
-            while(resultSet.next()){
-                content_fname.add(resultSet.getString("firstname"));
-            }
-        } finally {
-            return content_fname;
-        }
-    }
-    public List getLnameFromTable() throws Exception{
-        List<String> content_lname = new ArrayList<>();
-        try {
-            //Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM test.Users;");
-            while(resultSet.next()){
-                content_lname.add(resultSet.getString("lastname"));
-            }
-        } finally {
-            return content_lname;
-        }
-    }
 
     public ArrayList<List<String>> getUsers() throws Exception{
         ArrayList<List<String>> lst = new ArrayList<>();
         try {
             //Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM test.Users;");
             while(resultSet.next()){

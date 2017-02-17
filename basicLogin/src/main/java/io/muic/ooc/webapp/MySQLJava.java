@@ -28,7 +28,7 @@ public class MySQLJava {
         boolean not_pass = false;
         try {
             //Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             statement = connection.createStatement();
             resultSet2 = statement.executeQuery("SELECT * FROM test.Users;");
             while(resultSet2.next()){
@@ -55,7 +55,7 @@ public class MySQLJava {
     public void DeleteRow(String name) {
         try {
             Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             PreparedStatement st = connection.prepareStatement("DELETE FROM test.Users WHERE username = ?");
             st.setString(1,name);
             st.executeUpdate();
@@ -67,7 +67,7 @@ public class MySQLJava {
     public void UpdateRow(String usernamedb, String username, String fname, String lname) {
         try {
 //            Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             String query = "UPDATE test.Users SET username = ?, firstname = ?, lastname = ? WHERE username = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setString(1, username);
@@ -86,7 +86,7 @@ public class MySQLJava {
         try {
             // create a mysql database connection
 //            Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             // note that i'm leaving "date_created" out of this insert statement
             String query = "INSERT INTO test.Users (username, password, firstname, lastname) VALUES(?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
