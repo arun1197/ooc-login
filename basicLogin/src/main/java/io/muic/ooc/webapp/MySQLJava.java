@@ -6,6 +6,8 @@ import java.sql.*;
 
 public class MySQLJava {
 
+
+
     enum TestTableColumns {
         username, password;
     }
@@ -13,18 +15,17 @@ public class MySQLJava {
     private final String jdbcDriverStr;
     private final String jdbcURL;
 
-    private Connection connection;
-    private Statement statement;
-    public static ResultSet resultSet;
-    private ResultSet resultSet2;
-//    private PreparedStatement preparedStatement;
+    private static Connection connection;
+    private static Statement statement;
+    public static ResultSet resultSet2;
+
 
     public MySQLJava(String jdbcDriverStr, String jdbcURL) {
         this.jdbcDriverStr = jdbcDriverStr;
         this.jdbcURL = jdbcURL;
     }
 
-    public boolean checkLogin(String username, String password) throws Exception {
+    public static  boolean checkLogin(String username, String password) throws Exception {
         boolean not_pass = false;
         HashSalt hashSalt = new HashSalt();
         try {
@@ -32,10 +33,13 @@ public class MySQLJava {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             statement = connection.createStatement();
             resultSet2 = statement.executeQuery("SELECT * FROM test.Users;");
-            String pass = hashSalt.hashPassword(resultSet2.getString("password"));
+
+//            System.out.println(password);
+//            System.out.println(resultSet2.getString("password"));
+//            System.out.println(hashSalt.checkPassword(password,pass));
             while(resultSet2.next()){
                 if(StringUtils.equals(resultSet2.getString("username"),username) &&
-                        StringUtils.equals(resultSet2.getString("password"),password)) {
+                            hashSalt.checkPassword(password,resultSet2.getString("password"))){
                         not_pass = true;
                 }
         }
@@ -45,14 +49,20 @@ public class MySQLJava {
         }
     }
 
-    public  void getResultSet(ResultSet resultSet) throws Exception {
-        while (resultSet.next()) {
-            String username = resultSet.getString(TestTableColumns.username.toString());
-            String password = resultSet.getString(TestTableColumns.password.toString());
-            System.out.println("username: " + username);
-            System.out.println("password: " + password);
-        }
-    }
+//    public static void main(String[] args) throws Exception {
+//        String username = "arun1197";
+//        String password = "password";
+//        System.out.println(checkLogin(username,password));
+//    }
+
+//    public  void getResultSet(ResultSet resultSet) throws Exception {
+//        while (resultSet.next()) {
+//            String username = resultSet.getString(TestTableColumns.username.toString());
+//            String password = resultSet.getString(TestTableColumns.password.toString());
+//            System.out.println("username: " + username);
+//            System.out.println("password: " + password);
+//        }
+//    }
 
     public void DeleteRow(String name) {
         try {
@@ -88,12 +98,13 @@ public class MySQLJava {
         try {
             // create a mysql database connection
 //            Class.forName(jdbcDriverStr);
+            HashSalt hashSalt = new HashSalt();
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             // note that i'm leaving "date_created" out of this insert statement
             String query = "INSERT INTO test.Users (username, password, firstname, lastname) VALUES(?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2,password);
+            preparedStatement.setString(2,hashSalt.hashPassword(password));
             preparedStatement.setString(3,fname);
             preparedStatement.setString(4,lname);
             preparedStatement.executeUpdate();
@@ -106,10 +117,10 @@ public class MySQLJava {
 
     }
 
-    private void close() {
+    private static void close() {
         try {
-            if (resultSet != null) {
-                resultSet.close();
+            if (resultSet2 != null) {
+                resultSet2.close();
             }
             if (statement != null) {
                 statement.close();

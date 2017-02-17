@@ -2,6 +2,7 @@ package io.muic.ooc.webapp.servlet;
 
 /*source: http://javaandj2eetutor.blogspot.sg/2014/01/login-application-using-jsp-servlet-and.html */
 
+import io.muic.ooc.webapp.HashSalt;
 import io.muic.ooc.webapp.Main;
 import org.apache.commons.lang.StringUtils;
 
@@ -34,6 +35,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // do login post logic
         // extract username and password from request
+        HashSalt hashSalt = new HashSalt();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 //        PrintWriter out = response.getWriter();
@@ -42,6 +44,7 @@ public class LoginServlet extends HttpServlet {
         }
         if (!StringUtils.isBlank(username) && !StringUtils.isBlank(password)) {
             try {
+//                System.out.println(hashSalt.checkPassword(password,hashSalt.hashPassword("password")));
                 if (Main.mySQLJava.checkLogin(username, password)) {
                     HttpSession session = request.getSession();
                     session.setAttribute("username",username);
