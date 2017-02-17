@@ -21,28 +21,12 @@ public class ErrorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if(req.getSession().getAttribute("username")!=null){
-            resp.sendRedirect("index.jsp");
-        }
-        else{
-            resp.sendRedirect("index.jsp");
-        }
+        resp.sendRedirect("/login");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String username = req.getParameter("username");
-
-        try {
-            if (req.getSession().getAttribute("username")!=null){
-                resp.sendRedirect("index.jsp");
-            }
-            else{
-                resp.sendRedirect("index.jsp");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        resp.sendRedirect("/login");
     }
 }
