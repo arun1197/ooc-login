@@ -20,7 +20,7 @@ public class Main {
         String webappDirLocation = "src/main/webapp/";
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(80);
-        StandardContext ctx = (StandardContext) tomcat.addWebapp("", new File(webappDirLocation).getAbsolutePath());
+        StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
         System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
 
         // Declare an alternative location for your "WEB-INF/classes" dir
