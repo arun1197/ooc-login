@@ -22,7 +22,7 @@ public class ErrorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         if(req.getSession().getAttribute("username")!=null){
-            resp.sendRedirect("userList.jsp");
+            resp.sendRedirect("index.jsp");
         }
         else{
             resp.sendRedirect("index.jsp");
@@ -36,7 +36,7 @@ public class ErrorServlet extends HttpServlet {
 
         try {
             if (req.getSession().getAttribute("username")!=null){
-                resp.sendRedirect("userList.jsp");
+                resp.sendRedirect("index.jsp");
             }
             else{
                 resp.sendRedirect("index.jsp");
