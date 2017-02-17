@@ -37,7 +37,7 @@
                 <div class="panel white-alpha-90">
                     <div class="panel-heading">
                         <div class="panel-title text-center">
-                            <h2>Edit <span class="text-primary">Information</span></h2></div>
+                            <h2>Enter username to confirm <span class="text-primary">DELETE</span></h2></div>
                     </div>
                     <div class="panel-body">
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
