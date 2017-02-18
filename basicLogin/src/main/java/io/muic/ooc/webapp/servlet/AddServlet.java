@@ -36,7 +36,7 @@ public class AddServlet extends HttpServlet {
         String firstname =  req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         try {
-            if(!readSQL.existingUser(username)){
+            if(readSQL.notexistingUser(username)==true){
                 Main.mySQLJava.AddRow(username,password,firstname,lastname);
                 resp.sendRedirect("/users");
             }else{

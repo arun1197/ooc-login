@@ -35,15 +35,17 @@ public class ReadSQL {
             return lst;
         }
     }
-    public boolean existingUser(String username) throws Exception{
-        boolean user_exist = true;
+    public boolean notexistingUser(String username) throws Exception{
+        boolean not_exist = true;
         for(List<String> i : getUsers()){
-            if(!i.contains(username)){
-                user_exist = false;
-
+            if(i.contains(username)){
+                not_exist = false;
+            }
+            else{
+                not_exist = true;
             }
         }
-        return user_exist;
+        return not_exist;
     }
     private void close() {
         try {
