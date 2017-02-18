@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Don on 2/13/2017 AD.
@@ -36,19 +35,13 @@ public class AddServlet extends HttpServlet {
         String password = req.getParameter("password");
         String firstname =  req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
-        //PrintWriter printWriter =  resp.getWriter();
         try {
-//            System.out.println("Im here");
-            for(List<String> i: readSQL.getUsers()){
-                if (!i.contains(username)){
-                    Main.mySQLJava.AddRow(username,password,firstname,lastname);
-                    resp.sendRedirect("/users");
-                }
-                else{
-                    resp.sendRedirect("/users");
-                }
+            if(!readSQL.existingUser(username)){
+                Main.mySQLJava.AddRow(username,password,firstname,lastname);
+                resp.sendRedirect("/users");
+            }else{
+                resp.sendRedirect("/users");
             }
-//            System.out.println("added to db");
         } catch (Exception e) {
             e.printStackTrace();
         }

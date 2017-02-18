@@ -35,6 +35,16 @@ public class ReadSQL {
             return lst;
         }
     }
+    public boolean existingUser(String username) throws Exception{
+        boolean user_exist = true;
+        for(List<String> i : getUsers()){
+            if(!i.contains(username)){
+                user_exist = false;
+
+            }
+        }
+        return user_exist;
+    }
     private void close() {
         try {
             if (resultSet != null) {
