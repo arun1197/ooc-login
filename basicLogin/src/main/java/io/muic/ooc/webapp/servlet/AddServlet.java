@@ -2,6 +2,7 @@ package io.muic.ooc.webapp.servlet;
 
 import io.muic.ooc.webapp.Main;
 import io.muic.ooc.webapp.ReadSQL;
+import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,7 @@ public class AddServlet extends HttpServlet {
         String firstname =  req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         try {
-            if(readSQL.notexistingUser(username)==true){
+            if(!StringUtils.isBlank(username) && !StringUtils.isBlank(password) && readSQL.notexistingUser(username)==true){
                 Main.mySQLJava.AddRow(username,password,firstname,lastname);
                 resp.sendRedirect("/users");
             }else{
