@@ -1,6 +1,7 @@
 package io.muic.ooc.webapp.servlet;
 
 import io.muic.ooc.webapp.Main;
+import io.muic.ooc.webapp.ReadSQL;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,13 +30,16 @@ public class EditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        ReadSQL sql = new ReadSQL();
         String username = req.getParameter("username");
 //        String password = req.getParameter("password");
         String firstname = req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         try {
+            if(sql.notexistingUser(username)==true){
             Main.mySQLJava.UpdateRow(username,username,firstname,lastname);
             resp.sendRedirect("/users");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
