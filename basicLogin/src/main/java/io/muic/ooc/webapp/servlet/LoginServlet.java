@@ -48,10 +48,11 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("/users");
 
                 } else {
-                    String up_wrong = "username or password is in wrong format.";
-                    request.setAttribute("error", up_wrong);
-                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                    rd.forward(request, response);
+//                    String up_wrong = "username or password is in wrong format.";
+//                    request.setAttribute("error", up_wrong);
+//                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//                    rd.forward(request, response);
+                    response.sendRedirect("/login");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
