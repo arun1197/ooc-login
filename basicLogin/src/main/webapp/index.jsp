@@ -53,8 +53,8 @@
                                 <span id="btn-login" style="border-left: 0px"><input type="submit" value="Login" class="btn btn-success"></span>
                             </div>
                         </form>
-                        <p id="output1" class="error-text"></p>
-                        <p id="output2" class="error-text"></p>
+                        <p id="output1" class="error-text">${error}</p>
+
                     </div>
                 </div>
             </div>

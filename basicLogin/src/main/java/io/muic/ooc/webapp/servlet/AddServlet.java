@@ -43,7 +43,7 @@ public class AddServlet extends HttpServlet {
             }else{
                 String error = "User exist. Enter a unique username.";
                 req.setAttribute("error", error);
-                RequestDispatcher rd = req.getRequestDispatcher("/add");
+                RequestDispatcher rd = req.getRequestDispatcher("add.jsp");
                 rd.forward(req, resp);
             }
         } catch (Exception e) {
