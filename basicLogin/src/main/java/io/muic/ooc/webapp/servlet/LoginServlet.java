@@ -6,6 +6,7 @@ import io.muic.ooc.webapp.HashSalt;
 import io.muic.ooc.webapp.Main;
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +54,11 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     String up_wrong = "username or password is in wrong format.";
                     request.setAttribute("error", up_wrong);
-                    response.sendRedirect("index.jsp");
+//                    String error = "Username or password is missing.";
+//                    request.setAttribute("error", error);
+                    RequestDispatcher rd = request.getRequestDispatcher("/login");
+                    rd.forward(request, response);
+//                    response.sendRedirect("index.jsp");
 //                    out.print(up_wrong);
 //                    out.flush();
                 }
