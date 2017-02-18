@@ -40,7 +40,8 @@ public class AddServlet extends HttpServlet {
                 Main.mySQLJava.AddRow(username,password,firstname,lastname);
                 resp.sendRedirect("/users");
             }else{
-                resp.sendRedirect("/users");
+                req.setAttribute("error","User exist");
+                resp.sendRedirect("/add");
             }
         } catch (Exception e) {
             e.printStackTrace();

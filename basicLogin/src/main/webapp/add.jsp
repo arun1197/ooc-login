@@ -64,7 +64,8 @@
                             <%--</div>--%>
 
                             <div class="input-group center">
-                                <span id="btn-login" style="border-left: 0px"><input type="submit" class="btn btn-success"></input></span>
+                                <span id="btn-login" style="border-left: 0px"><input type="submit" class="btn btn-success"></span>
+                                ${error}
                             </div>
                         </form>
                     </div>
