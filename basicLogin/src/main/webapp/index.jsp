@@ -22,7 +22,7 @@
         <%response.setHeader("Cache-Control","no-store");%>
         <%response.setDateHeader("Expires", 0);%>
         <%response.setHeader("Pragma","no-cache");%>
-        <% if(session.getAttribute("username")!=null){
+        <% if(session.getAttribute("username")!=null) {
             response.sendRedirect("userList.jsp");
         }
         %>
@@ -51,10 +51,9 @@
 
                             <div class="input-group center">
                                 <span id="btn-login" style="border-left: 0px"><input type="submit" value="Login" class="btn btn-success"></span>
+                                <p>${error}</p>
                             </div>
                         </form>
-                        <%--<p id="output1" class="error-text">${error}</p>--%>
-
                     </div>
                 </div>
             </div>

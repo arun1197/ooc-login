@@ -33,10 +33,6 @@ public class MySQLJava {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             statement = connection.createStatement();
             resultSet2 = statement.executeQuery("SELECT * FROM test.Users;");
-
-//            System.out.println(password);
-//            System.out.println(resultSet2.getString("password"));
-//            System.out.println(hashSalt.checkPassword(password,pass));
             while(resultSet2.next()){
                 if(StringUtils.equals(resultSet2.getString("username"),username) &&
                             hashSalt.checkPassword(password,resultSet2.getString("password"))){
@@ -48,21 +44,6 @@ public class MySQLJava {
             return not_pass;
         }
     }
-
-//    public static void main(String[] args) throws Exception {
-//        String username = "arun1197";
-//        String password = "password";
-//        System.out.println(checkLogin(username,password));
-//    }
-
-//    public  void getResultSet(ResultSet resultSet) throws Exception {
-//        while (resultSet.next()) {
-//            String username = resultSet.getString(TestTableColumns.username.toString());
-//            String password = resultSet.getString(TestTableColumns.password.toString());
-//            System.out.println("username: " + username);
-//            System.out.println("password: " + password);
-//        }
-//    }
 
     public void DeleteRow(String name) {
         try {

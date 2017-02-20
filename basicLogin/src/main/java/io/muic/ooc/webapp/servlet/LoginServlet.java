@@ -7,7 +7,6 @@ import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +24,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        ServletOutputStream out = resp.getOutputStream();
-        out.write("hello world".getBytes());
-        out.flush();
-        out.close();
+        RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+        rd.include(req, resp);
     }
 
     @Override
@@ -48,20 +45,20 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("/users");
 
                 } else {
-//                    String up_wrong = "username or password is in wrong format.";
-//                    request.setAttribute("error", up_wrong);
-//                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-//                    rd.forward(request, response);
-                    response.sendRedirect("index.jsp");
+                    String error = "username or password is in wrong format.";
+                    request.setAttribute("error",error);
+                    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+                    rd.forward(request, response);
+//                    response.sendRedirect("index.jsp");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         } else {
-            String up_wrong = "username or password is in wrong format.";
-            request.setAttribute("error", up_wrong);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            String error = "username or password is in wrong format.";
+            request.setAttribute("error", error);
+            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
         }
         // check username and password against database
