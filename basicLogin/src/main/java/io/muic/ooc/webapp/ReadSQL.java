@@ -20,7 +20,7 @@ public class ReadSQL {
         ArrayList<List<String>> lst = new ArrayList<>();
         try {
             //Class.forName(jdbcDriverStr);
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM test.Users;");
             while(resultSet.next()){

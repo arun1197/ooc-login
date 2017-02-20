@@ -58,13 +58,12 @@
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
                             </div>
-                            <%--<div class="input-group col-xs-6">--%>
-                                <%--<span class="input-group-addon"><i class="fa fa-lock"></i></span>--%>
-                                <%--<input id="login-password" type="password" class="form-control" name="password" placeholder="password">--%>
-                            <%--</div>--%>
 
                             <div class="input-group center">
                                 <span id="btn-login" style="border-left: 0px"><input type="submit" class="btn btn-success"></span>
+                                <p><%if (request.getAttribute("error")!=null){%>
+                                    <%=request.getAttribute("error")%>
+                                    <%}%></p>
                             </div>
                         </form>
                     </div>

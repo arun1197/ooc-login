@@ -4,6 +4,7 @@ import io.muic.ooc.webapp.Main;
 import io.muic.ooc.webapp.ReadSQL;
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,14 +38,15 @@ public class AddServlet extends HttpServlet {
         String firstname =  req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         try {
-            if(!StringUtils.isBlank(username) && !StringUtils.isBlank(password) && readSQL.notexistingUser(username)==true){
+            if(!StringUtils.isBlank(username) && !StringUtils.isBlank(password) && !req.getSession().getAttribute("username").equals(username)
+                    &&readSQL.notexistingUser(username)==true){
                 Main.mySQLJava.AddRow(username,password,firstname,lastname);
                 resp.sendRedirect("/users");
             }else{
-//                String error = "User exist. Enter a unique username.";
-//                req.setAttribute("error", error);
-//                RequestDispatcher rd = req.getRequestDispatcher("add.jsp");
-//                rd.forward(req, resp);
+                String error = "User exist. Enter a unique username.";
+                req.setAttribute("error", error);
+                RequestDispatcher rd = req.getRequestDispatcher("/add.jsp");
+                rd.forward(req, resp);
                 resp.sendRedirect("/add");
             }
         } catch (Exception e) {

@@ -51,7 +51,9 @@
 
                             <div class="input-group center">
                                 <span id="btn-login" style="border-left: 0px"><input type="submit" value="Login" class="btn btn-success"></span>
-                                <p>${error}</p>
+                                <p><%if (request.getAttribute("error")!=null){%>
+                                    <%=request.getAttribute("error")%>
+                                <%}%></p>
                             </div>
                         </form>
                     </div>

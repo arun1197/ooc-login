@@ -57,7 +57,7 @@ public class MySQLJava {
         }
     }
 
-    public void UpdateRow(String usernamedb, String username, String fname, String lname) {
+    public void UpdateRow( String id,String username, String fname, String lname) {
         try {
 //            Class.forName(jdbcDriverStr);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","password");
@@ -66,7 +66,8 @@ public class MySQLJava {
             preparedStmt.setString(1, username);
             preparedStmt.setString(2, fname);
             preparedStmt.setString(3, lname);
-            preparedStmt.setString(4, usernamedb);
+            preparedStmt.setString(4, id);
+
             // execute the java preparedstatement
             preparedStmt.executeUpdate();
             connection.close();

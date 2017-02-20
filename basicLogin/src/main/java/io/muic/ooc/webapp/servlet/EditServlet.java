@@ -2,7 +2,9 @@ package io.muic.ooc.webapp.servlet;
 
 import io.muic.ooc.webapp.Main;
 import io.muic.ooc.webapp.ReadSQL;
+import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,14 +33,21 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ReadSQL sql = new ReadSQL();
+        String id = req.getParameter("id");
         String username = req.getParameter("username");
-//        String password = req.getParameter("password");
         String firstname = req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         try {
-            if(sql.notexistingUser(username)==true){
+            if(!StringUtils.isBlank(username) && !StringUtils.isBlank(firstname) && !StringUtils.isBlank(lastname)
+                    && sql.notexistingUser(username)){
             Main.mySQLJava.UpdateRow(username,username,firstname,lastname);
             resp.sendRedirect("/users");
+            }
+            else{
+                String error = "You cannot change to that username.";
+                req.setAttribute("error",error);
+                RequestDispatcher rd = req.getRequestDispatcher("/edit.jsp");
+                rd.forward(req, resp);
             }
         } catch (Exception e) {
             e.printStackTrace();
