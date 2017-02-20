@@ -24,6 +24,8 @@ public class ErrorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+//        HttpSession session = req.getSession();
+        req.getSession();
         resp.sendRedirect("/login");
     }
 }
